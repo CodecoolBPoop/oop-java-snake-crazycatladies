@@ -21,6 +21,7 @@
 # Gradle:
 .idea/**/gradle.xml
 .idea/**/libraries
+.idea/vcs.xml
 
 # CMake
 cmake-build-debug/
