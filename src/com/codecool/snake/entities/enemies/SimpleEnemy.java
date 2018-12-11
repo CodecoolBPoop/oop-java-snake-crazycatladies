@@ -19,10 +19,10 @@ public class SimpleEnemy extends Enemy implements Animatable, Interactable {
     double direction;
     int speed = 1;
 
-    public SimpleEnemy() {
+    public SimpleEnemy(String imageName) {
         super(-10);
 
-        setImage(Globals.getInstance().getImage("SimpleEnemy"));
+        setImage(Globals.getInstance().getImage(imageName));
         setX(rnd.nextDouble() * Globals.WINDOW_WIDTH);
         setY(rnd.nextDouble() * Globals.WINDOW_HEIGHT);
 
