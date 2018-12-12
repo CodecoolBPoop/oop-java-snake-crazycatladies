@@ -80,17 +80,9 @@ public class Snake implements Animatable {
         alert.setTitle("GAME OVER!");
         alert.setHeaderText("Your score is: ");
         alert.setContentText("Start a new game?");
-        ButtonType buttonTypeOne = new ButtonType("Yes");
-        ButtonType buttonTypeTwo = new ButtonType("No");
 
         Platform.runLater(() -> {
             Optional<ButtonType> result = alert.showAndWait();
-/*            if (result.isPresent() && result.get() == buttonTypeOne) {
-                System.out.println("testing Yes");
-            } else if (result.isPresent() && result.get() == buttonTypeTwo) {
-                System.out.println("testing no");
-                Platform.exit();
-            }*/
             if(result.get() == ButtonType.OK) {
                 System.out.println("testing ok");
             }
