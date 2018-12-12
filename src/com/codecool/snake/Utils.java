@@ -17,4 +17,14 @@ public class Utils {
     public static boolean doesEventHappen(double probability) {
         return Math.random() > 1 - probability;
     }
+
+    public static int getRandomWithin(int min, int max) {
+        if (max < min) {
+            int y = min;
+            min = max;
+            max = y;
+        }
+
+        return (int) Math.round(Math.random() * (max - min) + min);
+    }
 }
