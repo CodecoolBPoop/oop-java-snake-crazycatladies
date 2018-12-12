@@ -35,6 +35,7 @@ public class Globals {
         resources.addImage("MyEnemy", new Image("my_enemy.png"));
         resources.addImage("SoulStone", new Image("soul_stone_20x30.png"));
         resources.addImage("PowerStone", new Image("power_stone_20x30.png"));
+        resources.addImage("TitanBackground", new Image("background_titan.jpg"));
     }
 
     public Image getImage(String name) { return resources.getImage(name); }
