@@ -16,11 +16,16 @@ import javafx.application.Platform;
 import javax.xml.transform.Result;
 import java.util.Optional;
 
+import static java.lang.StrictMath.round;
+
 
 public class Snake implements Animatable {
     private static final float speed = 2;
-    private static final int maxhealth = 100;
+    private static final int maxHealth = 100;
+    private static final double startingScore = 0;
+    private static final double scorePerStep = 0.4;
     private int health = 100;
+    private double score = 0;
 
     private SnakeHead head;
     private DelayedModificationList<GameEntity> body;
@@ -36,7 +41,7 @@ public class Snake implements Animatable {
     public void step() {
         SnakeControl turnDir = getUserInput();
         head.updateRotation(turnDir, speed);
-
+        changeScore(scorePerStep);
         updateSnakeBodyHistory();
         checkForGameOverConditions();
 
@@ -61,13 +66,21 @@ public class Snake implements Animatable {
         Globals.getInstance().display.updateSnakeHeadDrawPosition(head);
     }
 
+    public void changeScore(double diff) {
+        score += diff;
+    }
+
     public void changeHealth(int diff) {
         health += diff;
         System.out.println("Snake health: " + health);
     }
 
+    public void resetScore() {
+        score = startingScore;
+    }
+
     public void resetHealth() {
-        health = maxhealth;
+        health = maxHealth;
     }
 
     private void checkForGameOverConditions() {
@@ -82,10 +95,11 @@ public class Snake implements Animatable {
 
      Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
         alert.setTitle("GAME OVER!");
-        alert.setHeaderText("Your score is: ");
+        alert.setHeaderText("Your score is: " + round(score));
         alert.setContentText("Start a new game?");
 
         Platform.runLater(() -> {
+            System.out.println(score);
             Optional<ButtonType> result = alert.showAndWait();
             if(result.get() == ButtonType.OK) {
                 System.out.println("testing new game");
@@ -105,7 +119,9 @@ public class Snake implements Animatable {
         Globals.getInstance().game.init();
         Globals.getInstance().game.start();
         resetHealth();
+        resetScore();
         System.out.println(health);
+        System.out.println(score);
     }
 
 
