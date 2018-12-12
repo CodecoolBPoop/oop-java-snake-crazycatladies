@@ -1,13 +1,15 @@
 package com.codecool.snake;
 
 import com.codecool.snake.entities.enemies.SimpleEnemy;
-import com.codecool.snake.entities.powerups.SimplePowerUp;
+import com.codecool.snake.entities.powerups.PowerStonePowerUp;
+import com.codecool.snake.entities.powerups.SoulStonePowerUp;
 import com.codecool.snake.entities.snakes.Snake;
 import com.codecool.snake.eventhandler.InputHandler;
 
 import com.sun.javafx.geom.Vec2d;
 import javafx.scene.Scene;
-import javafx.scene.layout.Pane;
+import javafx.scene.layout.*;
+import javafx.scene.image.Image;
 
 
 public class Game extends Pane {
@@ -65,7 +67,17 @@ public class Game extends Pane {
     }
 
     private void spawnPowerUps(int numberOfPowerUps) {
-        for(int i = 0; i < numberOfPowerUps; ++i) new SimplePowerUp();
+        for (int i = 0; i < numberOfPowerUps; ++i) {
+            int decider = Utils.getRandomWithin(0, 2);
+            switch (decider) {
+                case 0:
+                    new SoulStonePowerUp();
+                    break;
+                case 1:
+                    new PowerStonePowerUp();
+                    break;
+            }
+        }
     }
 
     private void maybeSpawnPowerUp(double probability) {
@@ -78,5 +90,10 @@ public class Game extends Pane {
         Scene scene = getScene();
         scene.setOnKeyPressed(event -> InputHandler.getInstance().setKeyPressed(event.getCode()));
         scene.setOnKeyReleased(event -> InputHandler.getInstance().setKeyReleased(event.getCode()));
+    }
+
+    public void setBackgroundImage(Image backgroundImage) {
+        setBackground(new Background(new BackgroundImage(backgroundImage, BackgroundRepeat.REPEAT, BackgroundRepeat.REPEAT,
+                BackgroundPosition.CENTER, BackgroundSize.DEFAULT)));
     }
 }
