@@ -31,7 +31,7 @@ public class Globals {
         resources = new Resources();
         resources.addImage("SnakeHead", new Image("inf_gauntlet.png"));
         resources.addImage("SnakeBody", new Image("body.png"));
-        resources.addImage("SimpleEnemy", new Image("simple_enemy.png"));
+        resources.addImage("SimpleEnemy", new Image("iron_man.gif"));
         resources.addImage("PowerUpBerry", new Image("powerup_berry.png"));
         resources.addImage("MyEnemy", new Image("my_enemy.png"));
     }

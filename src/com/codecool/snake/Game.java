@@ -16,6 +16,7 @@ public class Game extends Pane {
     private Snake snake = null;
     private GameTimer gameTimer = new GameTimer();
     private GameTimer powerupTimer = new GameTimer(POWERUP_FRAME_TIME);
+    private GameTimer enemyTimer = new GameTimer(POWERUP_FRAME_TIME);
 
 
     public Game() {
@@ -35,8 +36,10 @@ public class Game extends Pane {
         Globals.getInstance().setGameLoop(gameLoop);
         gameTimer.setup(gameLoop::step);
         powerupTimer.setup(() -> this.maybeSpawnPowerUp(POWERUP_PROBABILITY));
+        enemyTimer.setup(() -> this.spawnEnemiesWhenRun(POWERUP_PROBABILITY));
         gameTimer.play();
         powerupTimer.play();
+        enemyTimer.play();
     }
 
     public void start() {
@@ -52,6 +55,12 @@ public class Game extends Pane {
         for(int i = 0; i < numberOfEnemies; ++i) {
             new SimpleEnemy("SimpleEnemy");
             new SimpleEnemy("MyEnemy");
+        }
+    }
+
+    private void spawnEnemiesWhenRun(double probability){
+        if (Utils.doesEventHappen(probability)) {
+            this.spawnEnemies(1);
         }
     }
 
