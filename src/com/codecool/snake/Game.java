@@ -4,6 +4,7 @@ import com.codecool.snake.entities.enemies.SimpleEnemy;
 import com.codecool.snake.entities.powerups.PowerStonePowerUp;
 import com.codecool.snake.entities.powerups.SoulStonePowerUp;
 import com.codecool.snake.entities.powerups.SpaceStonePowerUp;
+import com.codecool.snake.entities.powerups.TimeStonePowerUp;
 import com.codecool.snake.entities.snakes.Snake;
 import com.codecool.snake.eventhandler.InputHandler;
 
@@ -11,6 +12,8 @@ import com.sun.javafx.geom.Vec2d;
 import javafx.scene.Scene;
 import javafx.scene.layout.*;
 import javafx.scene.image.Image;
+
+import java.sql.Time;
 
 
 public class Game extends Pane {
@@ -60,7 +63,7 @@ public class Game extends Pane {
 
     private void spawnPowerUps(int numberOfPowerUps) {
         for (int i = 0; i < numberOfPowerUps; ++i) {
-            int decider = Utils.getRandomWithin(0, 2);
+            int decider = Utils.getRandomWithin(0, 3);
             switch (decider) {
                 case 0:
                     new SoulStonePowerUp();
@@ -70,6 +73,9 @@ public class Game extends Pane {
                     break;
                 case 2:
                     new SpaceStonePowerUp();
+                    break;
+                case 3:
+                    new TimeStonePowerUp();
                     break;
             }
         }

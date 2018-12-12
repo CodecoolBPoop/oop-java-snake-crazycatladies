@@ -50,4 +50,8 @@ public class Globals {
     private Globals() {
         // singleton needs the class to have private constructor
     }
+
+    public GameLoop getGameLoop() {
+        return gameLoop;
+    }
 }
