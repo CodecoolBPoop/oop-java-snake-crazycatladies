@@ -23,6 +23,12 @@ public abstract class GameEntity extends ImageView {
     public void setPosition(Vec2d pos) {
         setX(pos.x);
         setY(pos.y);
+}
+
+    public void setFirstBodyPartPosition(Vec2d pos) {
+        //if (pos.x)
+        setX(pos.x+20);
+        setY(pos.y+20);
     }
 
     public boolean isOutOfBounds() {

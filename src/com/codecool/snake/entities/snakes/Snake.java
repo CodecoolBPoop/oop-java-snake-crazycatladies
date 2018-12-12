@@ -14,6 +14,7 @@ import javafx.scene.input.KeyCode;
 import javafx.application.Platform;
 
 import javax.xml.transform.Result;
+import java.util.List;
 import java.util.Optional;
 
 
@@ -83,6 +84,8 @@ public class Snake implements Animatable {
         alert.setTitle("GAME OVER!");
         alert.setHeaderText("Your score is: ");
         alert.setContentText("Start a new game?");
+        ButtonType buttonTypeOne = new ButtonType("Yes");
+        ButtonType buttonTypeTwo = new ButtonType("No");
 
         Platform.runLater(() -> {
             Optional<ButtonType> result = alert.showAndWait();
