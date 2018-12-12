@@ -1,9 +1,10 @@
 package com.codecool.snake.entities.enemies;
 
+import com.codecool.snake.Globals;
 import com.codecool.snake.entities.GameEntity;
 
 public abstract class Enemy extends GameEntity{
-    private final int damage;
+    private int damage;
     protected double speed = 1.0;
 
     public Enemy(int damage) {
@@ -21,5 +22,10 @@ public abstract class Enemy extends GameEntity{
             speed = 0;
         }
         System.out.println("Enemy speed: " + speed);
+    }
+
+    public void neutralize() {
+        this.setImage(Globals.getInstance().getImage("Bubble"));
+        this.damage = 0;
     }
 }

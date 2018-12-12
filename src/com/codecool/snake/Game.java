@@ -3,10 +3,7 @@ package com.codecool.snake;
 import com.codecool.snake.entities.GameEntity;
 import com.codecool.snake.entities.enemies.Enemy;
 import com.codecool.snake.entities.enemies.SimpleEnemy;
-import com.codecool.snake.entities.powerups.PowerStonePowerUp;
-import com.codecool.snake.entities.powerups.SoulStonePowerUp;
-import com.codecool.snake.entities.powerups.SpaceStonePowerUp;
-import com.codecool.snake.entities.powerups.TimeStonePowerUp;
+import com.codecool.snake.entities.powerups.*;
 import com.codecool.snake.entities.snakes.Snake;
 import com.codecool.snake.eventhandler.InputHandler;
 
@@ -66,7 +63,7 @@ public class Game extends Pane {
 
     private void spawnPowerUps(int numberOfPowerUps) {
         for (int i = 0; i < numberOfPowerUps; ++i) {
-            int decider = Utils.getRandomWithin(0, 3);
+            int decider = Utils.getRandomWithin(0, 4);
             switch (decider) {
                 case 0:
                     new SoulStonePowerUp();
@@ -79,6 +76,9 @@ public class Game extends Pane {
                     break;
                 case 3:
                     new TimeStonePowerUp();
+                    break;
+                case 4:
+                    new RealityStonePowerUp();
                     break;
             }
         }
@@ -96,6 +96,18 @@ public class Game extends Pane {
                 gameObjs) {
             if (gameObject instanceof Enemy) {
                 ((Enemy) gameObject).changeSpeed(speedChange);
+            }
+        }
+    }
+
+    public void neutralizeEnemies(int howMany) {
+        List<GameEntity> gameObjs = Globals.getInstance().display.getObjectList();
+        int counter = 0;
+        for (int i = 0; i < gameObjs.size(); i++) {
+            if (counter >= howMany) break;
+            if (gameObjs.get(i) instanceof Enemy) {
+                ((Enemy) gameObjs.get(i)).neutralize();
+                counter ++;
             }
         }
     }
