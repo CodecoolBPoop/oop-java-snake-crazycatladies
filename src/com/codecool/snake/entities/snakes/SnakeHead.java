@@ -56,7 +56,7 @@ public class SnakeHead extends GameEntity implements Interactable {
             snake.changeSpeed(SpaceStonePowerUp.getSpeedChange());
         }
         if (entity instanceof TimeStonePowerUp) {
-            Globals.getInstance().getGameLoop().slowDownEnemies(TimeStonePowerUp.getEnemySpeedChange());
+            Globals.getInstance().game.slowDownEnemies(TimeStonePowerUp.getEnemySpeedChange());
         }
     }
 

@@ -1,5 +1,7 @@
 package com.codecool.snake;
 
+import com.codecool.snake.entities.GameEntity;
+import com.codecool.snake.entities.enemies.Enemy;
 import com.codecool.snake.entities.enemies.SimpleEnemy;
 import com.codecool.snake.entities.powerups.PowerStonePowerUp;
 import com.codecool.snake.entities.powerups.SoulStonePowerUp;
@@ -14,6 +16,7 @@ import javafx.scene.layout.*;
 import javafx.scene.image.Image;
 
 import java.sql.Time;
+import java.util.List;
 
 
 public class Game extends Pane {
@@ -84,6 +87,16 @@ public class Game extends Pane {
     private void maybeSpawnPowerUp(double probability) {
         if (Utils.doesEventHappen(probability)) {
             this.spawnPowerUps(1);
+        }
+    }
+
+    public void slowDownEnemies(double speedChange) {
+        List<GameEntity> gameObjs = Globals.getInstance().display.getObjectList();
+        for (GameEntity gameObject :
+                gameObjs) {
+            if (gameObject instanceof Enemy) {
+                ((Enemy) gameObject).changeSpeed(speedChange);
+            }
         }
     }
 

@@ -55,13 +55,4 @@ public class GameLoop {
         }
     }
 
-    public void slowDownEnemies(double speedChange) {
-        List<GameEntity> gameObjs = Globals.getInstance().display.getObjectList();
-        for (GameEntity gameObject :
-                gameObjs) {
-            if (gameObject instanceof Enemy) {
-                ((Enemy) gameObject).changeSpeed(speedChange);
-            }
-        }
-    }
 }
