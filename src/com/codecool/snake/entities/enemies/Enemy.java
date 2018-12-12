@@ -15,7 +15,11 @@ public abstract class Enemy extends GameEntity{
     }
 
     public void changeSpeed(double diff) {
-        speed += diff;
+        if (speed + diff > 0) {
+            speed += diff;
+        } else {
+            speed = 0;
+        }
         System.out.println("Enemy speed: " + speed);
     }
 }
