@@ -6,8 +6,7 @@ import com.codecool.snake.Utils;
 import com.codecool.snake.entities.Interactable;
 import com.codecool.snake.entities.enemies.Enemy;
 
-import com.codecool.snake.entities.powerups.PowerStonePowerUp;
-import com.codecool.snake.entities.powerups.SoulStonePowerUp;
+import com.codecool.snake.entities.powerups.*;
 import com.sun.javafx.geom.Vec2d;
 import javafx.geometry.Point2D;
 
@@ -49,6 +48,15 @@ public class SnakeHead extends GameEntity implements Interactable {
         }
         if (entity instanceof PowerStonePowerUp) {
             snake.addPart(PowerStonePowerUp.getBodySizeChange());
+        }
+        if (entity instanceof SpaceStonePowerUp) {
+            snake.changeSpeed(SpaceStonePowerUp.getSpeedChange());
+        }
+        if (entity instanceof TimeStonePowerUp) {
+            Globals.getInstance().game.slowDownEnemies(TimeStonePowerUp.getEnemySpeedChange());
+        }
+        if (entity instanceof RealityStonePowerUp) {
+            Globals.getInstance().game.neutralizeEnemies(RealityStonePowerUp.getNumberOfEnemiesToNeutralilze());
         }
     }
 

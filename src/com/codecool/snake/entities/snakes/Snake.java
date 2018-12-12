@@ -21,7 +21,7 @@ import static java.lang.StrictMath.round;
 
 
 public class Snake implements Animatable {
-    private static final float speed = 2;
+    private static float speed = 2;
     private static final int maxHealth = 100;
     private static final double startingScore = 0;
     private static final double scorePerStep = 0.4;
@@ -74,6 +74,11 @@ public class Snake implements Animatable {
     public void changeHealth(int diff) {
         health += diff;
         System.out.println("Snake health: " + health);
+    }
+
+    public void changeSpeed(double diff) {
+        speed += diff;
+        System.out.println("Snake speed: " + speed);
     }
 
     public void resetScore() {

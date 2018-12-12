@@ -2,7 +2,6 @@ package com.codecool.snake;
 
 import com.codecool.snake.resources.Resources;
 import javafx.scene.image.Image;
-import javafx.scene.layout.Pane;
 
 // class for holding all static stuff
 public class Globals {
@@ -33,9 +32,14 @@ public class Globals {
         resources.addImage("SnakeBody", new Image("body.png"));
         resources.addImage("SimpleEnemy", new Image("iron_man.gif"));
         resources.addImage("MyEnemy", new Image("my_enemy.png"));
-        resources.addImage("SoulStone", new Image("soul_stone_20x30.png"));
-        resources.addImage("PowerStone", new Image("power_stone_20x30.png"));
         resources.addImage("TitanBackground", new Image("background_titan.jpg"));
+        resources.addImage("SoulStone", new Image("infinity_stones/soul_stone_20x30.png"));
+        resources.addImage("PowerStone", new Image("infinity_stones/power_stone_20x30.png"));
+        resources.addImage("SpaceStone", new Image("infinity_stones/space_stone_20x30.png"));
+        resources.addImage("TimeStone", new Image("infinity_stones/time_stone_20x30.png"));
+        resources.addImage("RealityStone", new Image("infinity_stones/reality_stone_20x30.png"));
+        resources.addImage("MindStone", new Image("infinity_stones/mind_stone_20x30.png"));
+        resources.addImage("Bubble", new Image("Bubble_40x40.png"));
     }
 
     public Image getImage(String name) { return resources.getImage(name); }
@@ -47,4 +51,5 @@ public class Globals {
     private Globals() {
         // singleton needs the class to have private constructor
     }
+
 }

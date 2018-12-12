@@ -25,6 +25,6 @@ public class Main extends Application {
 
     @Override
     public void stop() throws Exception {
-        System.out.println("Exiting..");
+        System.out.println("Exiting");
     }
 }

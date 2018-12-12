@@ -17,7 +17,6 @@ public class SimpleEnemy extends Enemy implements Animatable, Interactable {
     private Point2D heading;
     private static Random rnd = new Random();
     double direction;
-    int speed = 1;
 
     public SimpleEnemy(String imageName) {
         super(-10);

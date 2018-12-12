@@ -3,6 +3,8 @@ package com.codecool.snake;
 import com.codecool.snake.entities.GameEntity;
 import com.codecool.snake.entities.Animatable;
 import com.codecool.snake.entities.Interactable;
+import com.codecool.snake.entities.enemies.Enemy;
+import com.codecool.snake.entities.powerups.TimeStonePowerUp;
 import com.codecool.snake.entities.snakes.Snake;
 
 import java.util.List;
@@ -52,4 +54,5 @@ public class GameLoop {
             }
         }
     }
+
 }
