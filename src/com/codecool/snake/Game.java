@@ -1,6 +1,7 @@
 package com.codecool.snake;
 
 import com.codecool.snake.entities.enemies.SimpleEnemy;
+import com.codecool.snake.entities.powerups.PowerStonePowerUp;
 import com.codecool.snake.entities.powerups.SoulStonePowerUp;
 import com.codecool.snake.entities.snakes.Snake;
 import com.codecool.snake.eventhandler.InputHandler;
@@ -56,7 +57,17 @@ public class Game extends Pane {
     }
 
     private void spawnPowerUps(int numberOfPowerUps) {
-        for(int i = 0; i < numberOfPowerUps; ++i) new SoulStonePowerUp();
+        for (int i = 0; i < numberOfPowerUps; ++i) {
+            int decider = Utils.getRandomWithin(0, 2);
+            switch (decider) {
+                case 0:
+                    new SoulStonePowerUp();
+                    break;
+                case 1:
+                    new PowerStonePowerUp();
+                    break;
+            }
+        }
     }
 
     private void maybeSpawnPowerUp(double probability) {

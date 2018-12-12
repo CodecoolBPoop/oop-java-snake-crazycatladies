@@ -1,7 +1,5 @@
 package com.codecool.snake.entities.powerups;
 
-import com.codecool.snake.Globals;
-
 public class SoulStonePowerUp extends PowerUp {
 
     private static final String IMAGE_NAME = "SoulStone";
