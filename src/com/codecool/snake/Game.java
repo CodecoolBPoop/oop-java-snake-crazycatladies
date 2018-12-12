@@ -11,8 +11,11 @@ import javafx.scene.layout.Pane;
 
 
 public class Game extends Pane {
+    private static final int POWERUP_FRAME_TIME = 3;
+    private static final double POWERUP_PROBABILITY = 0.4;
     private Snake snake = null;
     private GameTimer gameTimer = new GameTimer();
+    private GameTimer powerupTimer = new GameTimer(POWERUP_FRAME_TIME);
 
 
     public Game() {
@@ -31,7 +34,9 @@ public class Game extends Pane {
         GameLoop gameLoop = new GameLoop(snake);
         Globals.getInstance().setGameLoop(gameLoop);
         gameTimer.setup(gameLoop::step);
+        powerupTimer.setup(() -> this.maybeSpawnPowerUp(POWERUP_PROBABILITY));
         gameTimer.play();
+        powerupTimer.play();
     }
 
     public void start() {
@@ -52,6 +57,12 @@ public class Game extends Pane {
 
     private void spawnPowerUps(int numberOfPowerUps) {
         for(int i = 0; i < numberOfPowerUps; ++i) new SimplePowerUp();
+    }
+
+    private void maybeSpawnPowerUp(double probability) {
+        if (Utils.doesEventHappen(probability)) {
+            this.spawnPowerUps(1);
+        }
     }
 
     private void setupInputHandling() {

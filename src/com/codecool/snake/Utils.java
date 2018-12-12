@@ -13,4 +13,8 @@ public class Utils {
         Point2D heading = new Point2D(length * Math.sin(directionInRadians), - length * Math.cos(directionInRadians));
         return heading;
     }
+
+    public static boolean doesEventHappen(double probability) {
+        return Math.random() > 1 - probability;
+    }
 }
