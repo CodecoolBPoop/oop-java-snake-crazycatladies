@@ -16,11 +16,10 @@ import javafx.application.Platform;
 import javax.xml.transform.Result;
 import java.util.Optional;
 
-import static com.codecool.snake.Display.*;
-
 
 public class Snake implements Animatable {
     private static final float speed = 2;
+    private static final int maxhealth = 100;
     private int health = 100;
 
     private SnakeHead head;
@@ -66,6 +65,10 @@ public class Snake implements Animatable {
         health += diff;
     }
 
+    public void resetHealth() {
+        health = maxhealth;
+    }
+
     private void checkForGameOverConditions() {
         if (head.isOutOfBounds() || health <= 0) {
             System.out.println("Game Over");
@@ -84,15 +87,26 @@ public class Snake implements Animatable {
         Platform.runLater(() -> {
             Optional<ButtonType> result = alert.showAndWait();
             if(result.get() == ButtonType.OK) {
-                System.out.println("testing ok");
+                System.out.println("testing new game");
+                newGame();
             }
             else if(result.get() == ButtonType.CANCEL) {
-                System.out.println("testing cancel");
+                System.out.println("testing exit game");
                 Platform.exit();
             }
         });
 
     }
+
+    public void newGame() {
+        System.out.println(health);
+        Globals.getInstance().display.clear();
+        Globals.getInstance().game.init();
+        Globals.getInstance().game.start();
+        resetHealth();
+        System.out.println(health);
+    }
+
 
     private void updateSnakeBodyHistory() {
         GameEntity prev = head;
