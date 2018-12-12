@@ -14,6 +14,7 @@ import javafx.scene.input.KeyCode;
 import javafx.application.Platform;
 
 import javax.xml.transform.Result;
+import java.util.List;
 import java.util.Optional;
 
 import static com.codecool.snake.Display.*;
@@ -46,8 +47,8 @@ public class Snake implements Animatable {
 
     private SnakeControl getUserInput() {
         SnakeControl turnDir = SnakeControl.INVALID;
-        if(InputHandler.getInstance().isKeyPressed(KeyCode.LEFT)) turnDir = SnakeControl.TURN_LEFT;
-        if(InputHandler.getInstance().isKeyPressed(KeyCode.RIGHT)) turnDir = SnakeControl.TURN_RIGHT;
+        if (InputHandler.getInstance().isKeyPressed(KeyCode.LEFT)) turnDir = SnakeControl.TURN_LEFT;
+        if (InputHandler.getInstance().isKeyPressed(KeyCode.RIGHT)) turnDir = SnakeControl.TURN_RIGHT;
         return turnDir;
     }
 
@@ -76,7 +77,7 @@ public class Snake implements Animatable {
 
     public void displayAlert() {
 
-     Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+        Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
         alert.setTitle("GAME OVER!");
         alert.setHeaderText("Your score is: ");
         alert.setContentText("Start a new game?");
@@ -91,10 +92,9 @@ public class Snake implements Animatable {
                 System.out.println("testing no");
                 Platform.exit();
             }*/
-            if(result.get() == ButtonType.OK) {
+            if (result.get() == ButtonType.OK) {
                 System.out.println("testing ok");
-            }
-            else if(result.get() == ButtonType.CANCEL) {
+            } else if (result.get() == ButtonType.CANCEL) {
                 System.out.println("testing cancel");
                 Platform.exit();
             }
@@ -104,7 +104,11 @@ public class Snake implements Animatable {
 
     private void updateSnakeBodyHistory() {
         GameEntity prev = head;
-        for(GameEntity currentPart : body.getList()) {
+        for (GameEntity currentPart : body.getList()) {
+            //if (currentPart == body.getList().get(0)) {
+            //    currentPart.setFirstBodyPartPosition(prev.getPosition());
+            //} else {
+            //}
             currentPart.setPosition(prev.getPosition());
             prev = currentPart;
         }
@@ -113,7 +117,7 @@ public class Snake implements Animatable {
     private GameEntity getLastPart() {
         GameEntity result = body.getLast();
 
-        if(result != null) return result;
+        if (result != null) return result;
         return head;
     }
 }
