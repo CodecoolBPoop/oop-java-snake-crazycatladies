@@ -32,9 +32,13 @@ public class Globals {
         resources.addImage("SnakeBody", new Image("snake_body.png"));
         resources.addImage("SimpleEnemy", new Image("simple_enemy.png"));
         resources.addImage("MyEnemy", new Image("my_enemy.png"));
+        resources.addImage("TitanBackground", new Image("background_titan.jpg"));
         resources.addImage("SoulStone", new Image("infinity_stones/soul_stone_20x30.png"));
         resources.addImage("PowerStone", new Image("infinity_stones/power_stone_20x30.png"));
-        resources.addImage("TitanBackground", new Image("background_titan.jpg"));
+        resources.addImage("SpaceStone", new Image("infinity_stones/space_stone_20x30.png"));
+        resources.addImage("TimeStone", new Image("infinity_stones/time_stone_20x30.png"));
+        resources.addImage("RealityStone", new Image("infinity_stones/reality_stone_20x30.png"));
+        resources.addImage("MindStone", new Image("infinity_stones/mind_stone_20x30.png"));
     }
 
     public Image getImage(String name) { return resources.getImage(name); }
