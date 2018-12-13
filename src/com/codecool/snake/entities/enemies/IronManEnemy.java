@@ -1,39 +1,39 @@
 package com.codecool.snake.entities.enemies;
 
-import com.codecool.snake.entities.GameEntity;
 import com.codecool.snake.Globals;
+import com.codecool.snake.entities.snakes.Snake;
 import com.codecool.snake.entities.Animatable;
 import com.codecool.snake.Utils;
 import com.codecool.snake.entities.Interactable;
-import com.codecool.snake.entities.snakes.SnakeHead;
+
 import java.util.Random;
 
+import com.sun.javafx.geom.Vec2d;
 import javafx.geometry.Point2D;
 
-public class SimpleEnemy extends Enemy implements Animatable, Interactable {
+public class IronManEnemy extends Enemy implements Interactable, Animatable {
 
     private Point2D heading;
     private static Random rnd = new Random();
-    double direction;
 
-    public SimpleEnemy(String imageName) {
-        super(-10, imageName);
+    public IronManEnemy() {
+        super(-10, "IronMan");
 
         setX(rnd.nextDouble() * Globals.WINDOW_WIDTH);
         setY(rnd.nextDouble() * Globals.WINDOW_HEIGHT);
 
-        direction = rnd.nextDouble() * 360;
-        setRotate(SPAWNDIRECTION);
-
-        heading = Utils.directionToVector(direction, speed);
+        //TODO: head x,y coordinate? getposition?
     }
 
     @Override
     public void step() {
+        Vec2d headPosition;
+        headPosition = Snake.headPosition; //TODO: vektornak erre kéne mutatnia(végpont)
+
         if (isOutOfBounds()) {
-            direction = rnd.nextDouble() * 360;
-            setRotate(SPAWNDIRECTION);
-            heading = Utils.directionToVector(direction, speed);
+            heading = Utils.createHeadPointer(headPosition);
+        } else {
+
         }
         setX(getX() + heading.getX());
         setY(getY() + heading.getY());

@@ -2,7 +2,9 @@ package com.codecool.snake;
 
 import com.codecool.snake.entities.GameEntity;
 import com.codecool.snake.entities.enemies.Enemy;
+import com.codecool.snake.entities.enemies.IronManEnemy;
 import com.codecool.snake.entities.enemies.SimpleEnemy;
+import com.codecool.snake.entities.enemies.SpiderManEnemy;
 import com.codecool.snake.entities.powerups.*;
 import com.codecool.snake.entities.snakes.Snake;
 import com.codecool.snake.eventhandler.InputHandler;
@@ -35,7 +37,7 @@ public class Game extends Pane {
 
     public void init() {
         spawnSnake();
-        spawnEnemies(4);
+        spawnEnemies(2);
         spawnPowerUps(4);
 
         GameLoop gameLoop = new GameLoop(snake);
@@ -59,14 +61,16 @@ public class Game extends Pane {
 
     private void spawnEnemies(int numberOfEnemies) {
         for(int i = 0; i < numberOfEnemies; ++i) {
-            new SimpleEnemy("SimpleEnemy");
-            new SimpleEnemy("MyEnemy");
+            new SimpleEnemy("DoctorStrange");
+            new SpiderManEnemy();
         }
     }
 
     private void spawnEnemiesWhenRun(double probability){
         if (Utils.doesEventHappen(probability)) {
-            this.spawnEnemies(1);
+            new SimpleEnemy("DoctorStrange");
+            new SimpleEnemy("AmericanCaptain");
+            new SimpleEnemy("StarLord");
         }
     }
 

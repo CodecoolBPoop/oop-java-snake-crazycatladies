@@ -1,5 +1,6 @@
 package com.codecool.snake;
 
+import com.sun.javafx.geom.Vec2d;
 import javafx.geometry.Point2D;
 
 public class Utils {
@@ -12,6 +13,13 @@ public class Utils {
         double directionInRadians = directionInDegrees / 180 * Math.PI;
         Point2D heading = new Point2D(length * Math.sin(directionInRadians), - length * Math.cos(directionInRadians));
         return heading;
+    }
+
+    public static Point2D createHeadPointer(Vec2d headPosition){
+        double headX = headPosition.x;
+        double headY = headPosition.y;
+        Point2D headPointer = new Point2D(headX,headY);
+        return headPointer;
     }
 
     public static boolean doesEventHappen(double probability) {

@@ -1,20 +1,18 @@
 package com.codecool.snake.entities.snakes;
 
 import com.codecool.snake.DelayedModificationList;
-import com.codecool.snake.Display;
 import com.codecool.snake.Globals;
 import com.codecool.snake.entities.Animatable;
 import com.codecool.snake.entities.GameEntity;
 import com.codecool.snake.eventhandler.InputHandler;
 
+import com.sun.javafx.geom.Point2D;
 import com.sun.javafx.geom.Vec2d;
 import javafx.scene.control.Alert;
 import javafx.scene.control.ButtonType;
 import javafx.scene.input.KeyCode;
 import javafx.application.Platform;
 
-import javax.xml.transform.Result;
-import java.util.List;
 import java.util.Optional;
 
 import static java.lang.StrictMath.round;
@@ -25,6 +23,7 @@ public class Snake implements Animatable {
     private static final int maxHealth = 100;
     private static final double startingScore = 0;
     private static final double scorePerStep = 0.4;
+    public static Vec2d headPosition;
     private int health = 100;
     private double score = 0;
 
@@ -42,6 +41,7 @@ public class Snake implements Animatable {
     public void step() {
         SnakeControl turnDir = getUserInput();
         head.updateRotation(turnDir, speed);
+        headPosition = head.getPosition();
         changeScore(scorePerStep);
         updateSnakeBodyHistory();
         checkForGameOverConditions();
@@ -51,8 +51,8 @@ public class Snake implements Animatable {
 
     private SnakeControl getUserInput() {
         SnakeControl turnDir = SnakeControl.INVALID;
-        if(InputHandler.getInstance().isKeyPressed(KeyCode.LEFT)) turnDir = SnakeControl.TURN_LEFT;
-        if(InputHandler.getInstance().isKeyPressed(KeyCode.RIGHT)) turnDir = SnakeControl.TURN_RIGHT;
+        if (InputHandler.getInstance().isKeyPressed(KeyCode.LEFT)) turnDir = SnakeControl.TURN_LEFT;
+        if (InputHandler.getInstance().isKeyPressed(KeyCode.RIGHT)) turnDir = SnakeControl.TURN_RIGHT;
         return turnDir;
     }
 
@@ -99,7 +99,7 @@ public class Snake implements Animatable {
 
     public void displayAlert() {
 
-     Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+        Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
         alert.setTitle("GAME OVER!");
         alert.setHeaderText("Your score is: " + round(score));
         alert.setContentText("Start a new game?");
@@ -109,11 +109,10 @@ public class Snake implements Animatable {
         Platform.runLater(() -> {
             System.out.println(score);
             Optional<ButtonType> result = alert.showAndWait();
-            if(result.get() == ButtonType.OK) {
+            if (result.get() == ButtonType.OK) {
                 System.out.println("testing new game");
                 newGame();
-            }
-            else if(result.get() == ButtonType.CANCEL) {
+            } else if (result.get() == ButtonType.CANCEL) {
                 System.out.println("testing exit game");
                 Platform.exit();
             }
@@ -135,7 +134,7 @@ public class Snake implements Animatable {
 
     private void updateSnakeBodyHistory() {
         GameEntity prev = head;
-        for(GameEntity currentPart : body.getList()) {
+        for (GameEntity currentPart : body.getList()) {
             currentPart.setPosition(prev.getPosition());
             prev = currentPart;
         }
@@ -144,7 +143,7 @@ public class Snake implements Animatable {
     private GameEntity getLastPart() {
         GameEntity result = body.getLast();
 
-        if(result != null) return result;
+        if (result != null) return result;
         return head;
     }
 }

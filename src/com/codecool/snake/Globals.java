@@ -30,8 +30,11 @@ public class Globals {
         resources = new Resources();
         resources.addImage("SnakeHead", new Image("inf_gauntlet.png"));
         resources.addImage("SnakeBody", new Image("body.png"));
-        resources.addImage("SimpleEnemy", new Image("iron_man.gif"));
-        resources.addImage("MyEnemy", new Image("my_enemy.png"));
+        resources.addImage("IronMan", new Image("enemies/iron_man.gif"));
+        resources.addImage("DoctorStrange", new Image("enemies/doctor_strange.png"));
+        resources.addImage("StarLord", new Image("enemies/starLord.png"));
+        resources.addImage("SpiderMan", new Image("enemies/spider_man.png"));
+        resources.addImage("AmericanCaptain", new Image("enemies/american_captain.png"));
         resources.addImage("TitanBackground", new Image("background_titan.jpg"));
         resources.addImage("SoulStone", new Image("infinity_stones/soul_stone_20x30.png"));
         resources.addImage("PowerStone", new Image("infinity_stones/power_stone_20x30.png"));
