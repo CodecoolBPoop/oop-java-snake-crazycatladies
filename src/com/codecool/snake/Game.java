@@ -46,7 +46,7 @@ public class Game extends Pane {
     public void init() {
         spawnSnake();
         spawnEnemies(2);
-        spawnPowerUps(4);
+        spawnPowerUps(3);
         spawnBoards(scoreBoard, 910, snake.getScore());
         spawnBoards(healthBoard, 160, snake.getHealth());
         spawnLabels(healthLabel, 20, "Health: ");
@@ -77,13 +77,6 @@ public class Game extends Pane {
 
     private void spawnEnemies(int numberOfEnemies) {
         for(int i = 0; i < numberOfEnemies; ++i) {
-            new SimpleEnemy("DoctorStrange");
-            new SpiderManEnemy();
-        }
-    }
-
-    private void spawnEnemiesWhenRun(GameLoop gameLoop){
-        if (gameLoop.isRunning() && Utils.doesEventHappen(ENEMY_PROBABILITY)) {
             int decider = Utils.getRandomWithin(0, 3);
             switch (decider) {
                 case 0:
@@ -99,6 +92,12 @@ public class Game extends Pane {
                     new SpiderManEnemy();
                     break;
             }
+        }
+    }
+
+    private void spawnEnemiesWhenRun(GameLoop gameLoop){
+        if (gameLoop.isRunning() && Utils.doesEventHappen(ENEMY_PROBABILITY)) {
+            spawnEnemies(1);
         }
     }
 
