@@ -61,6 +61,7 @@ public class SnakeHead extends GameEntity implements Interactable {
         }
         if (entity instanceof PowerStonePowerUp) {
             snake.addPart(PowerStonePowerUp.getBodySizeChange());
+            snake.changeScore(PowerStonePowerUp.getScoreChange());
         }
         if (entity instanceof SpaceStonePowerUp) {
             snake.changeSpeed(SpaceStonePowerUp.getSpeedChange());
