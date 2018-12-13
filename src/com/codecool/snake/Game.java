@@ -26,7 +26,7 @@ import java.util.List;
 public class Game extends Pane {
     private static final int POWERUP_FRAME_TIME = 3;
     private static final double POWERUP_PROBABILITY = 0.4;
-    private static final double ENEMY_PROBABILITY = 0.2;
+    private static final double ENEMY_PROBABILITY = 0.6;
     private Snake snake = null;
     private GameTimer gameTimer = new GameTimer();
     private GameTimer powerupTimer = new GameTimer(POWERUP_FRAME_TIME);
@@ -88,9 +88,21 @@ public class Game extends Pane {
 
     private void spawnEnemiesWhenRun(GameLoop gameLoop){
         if (gameLoop.isRunning() && Utils.doesEventHappen(ENEMY_PROBABILITY)) {
-            new SimpleEnemy("DoctorStrange");
-            new SimpleEnemy("StarLord");
-            new IronManEnemy();
+            int decider = Utils.getRandomWithin(0, 3);
+            switch (decider) {
+                case 0:
+                    new SimpleEnemy("DoctorStrange");
+                    break;
+                case 1:
+                    new SimpleEnemy("StarLord");
+                    break;
+                case 2:
+                    new IronManEnemy();
+                    break;
+                case 3:
+                    new SpiderManEnemy();
+                    break;
+            }
         }
     }
 
