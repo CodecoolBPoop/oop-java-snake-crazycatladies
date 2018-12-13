@@ -135,8 +135,13 @@ public class Snake implements Animatable {
     private void updateSnakeBodyHistory() {
         GameEntity prev = head;
         for (GameEntity currentPart : body.getList()) {
-            currentPart.setPosition(prev.getPosition());
-            prev = currentPart;
+            if (prev instanceof SnakeHead) {
+                currentPart.setPosition(((SnakeHead) prev).getAccessPoint());
+                prev = currentPart;
+            } else {
+                currentPart.setPosition(prev.getPosition());
+                prev = currentPart;
+            }
         }
     }
 
