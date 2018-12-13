@@ -1,10 +1,7 @@
 package com.codecool.snake;
 
 import com.codecool.snake.entities.GameEntity;
-import com.codecool.snake.entities.enemies.Enemy;
-import com.codecool.snake.entities.enemies.IronManEnemy;
-import com.codecool.snake.entities.enemies.SimpleEnemy;
-import com.codecool.snake.entities.enemies.SpiderManEnemy;
+import com.codecool.snake.entities.enemies.*;
 import com.codecool.snake.entities.powerups.*;
 import com.codecool.snake.entities.snakes.Snake;
 import com.codecool.snake.eventhandler.InputHandler;
@@ -93,7 +90,7 @@ public class Game extends Pane {
                     new SimpleEnemy("DoctorStrange");
                     break;
                 case 1:
-                    new SimpleEnemy("StarLord");
+                    new StarLordEnemy();
                     break;
                 case 2:
                     new IronManEnemy();

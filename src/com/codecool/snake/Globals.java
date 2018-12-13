@@ -44,6 +44,7 @@ public class Globals {
         resources.addImage("RealityStone", new Image("infinity_stones/reality_stone_20x30.png"));
         resources.addImage("MindStone", new Image("infinity_stones/mind_stone_20x30.png"));
         resources.addImage("Bubble", new Image("Bubble_40x40.png"));
+        resources.addImage("WhereIsGamora", new Image("Where_is_Gamora.png"));
     }
 
     public Image getImage(String name) { return resources.getImage(name); }
