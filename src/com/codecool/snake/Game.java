@@ -56,6 +56,10 @@ public class Game extends Pane {
         Globals.getInstance().startGame();
     }
 
+    public Snake getSnake() {
+        return snake;
+    }
+
     private void spawnSnake() {
         snake = new Snake(new Vec2d(500, 500));
     }

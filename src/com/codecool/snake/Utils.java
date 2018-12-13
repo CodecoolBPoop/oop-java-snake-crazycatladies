@@ -15,13 +15,6 @@ public class Utils {
         return heading;
     }
 
-    public static Point2D createHeadPointer(Vec2d headPosition){
-        double headX = headPosition.x;
-        double headY = headPosition.y;
-        Point2D headPointer = new Point2D(headX / 10,headY / 10);
-        return headPointer;
-    }
-
     public static boolean doesEventHappen(double probability) {
         return Math.random() > 1 - probability;
     }
@@ -55,5 +48,26 @@ public class Utils {
         result.x = v1.x - v2.x;
         result.y = v1.y - v2.y;
         return result;
+    }
+
+    public static Vec2d normalizeVector(Vec2d vector) {
+        double length = getLengthOfVector(vector);
+        Vec2d result = new Vec2d();
+        result.x = vector.x / length;
+        result.y = vector.y / length;
+        return result;
+    }
+
+    public static double getDirection(Vec2d to, Vec2d from) {
+        double a = to.y - from.y;
+        double b = to.x - from.x;
+        if (b == 0) {
+            if (a >= 0) {
+                return 90;
+            } else {
+                return -90;
+            }
+        }
+        return Math.toDegrees(Math.atan(a / b)) - 90;
     }
 }

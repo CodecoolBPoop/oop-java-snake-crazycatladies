@@ -23,7 +23,6 @@ public class Snake implements Animatable {
     private static final int maxHealth = 100;
     private static final double startingScore = 0;
     private static final double scorePerStep = 0.4;
-    public static Vec2d headPosition;
     private int health = 100;
     private double score = 0;
 
@@ -41,12 +40,15 @@ public class Snake implements Animatable {
     public void step() {
         SnakeControl turnDir = getUserInput();
         head.updateRotation(turnDir, speed);
-        headPosition = head.getPosition();
         changeScore(scorePerStep);
         updateSnakeBodyHistory();
         checkForGameOverConditions();
 
         body.doPendingModifications();
+    }
+
+    public Vec2d getHeadPosition() {
+        return head.getPosition();
     }
 
     private SnakeControl getUserInput() {

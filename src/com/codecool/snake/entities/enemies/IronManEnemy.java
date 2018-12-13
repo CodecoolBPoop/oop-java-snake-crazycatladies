@@ -13,34 +13,31 @@ import javafx.geometry.Point2D;
 
 public class IronManEnemy extends Enemy implements Interactable, Animatable {
 
-    private Point2D heading;
     private static Random rnd = new Random();
-    private Vec2d headPosition = Snake.headPosition;
 
 
     public IronManEnemy() {
-        super(-10, "IronMan");
+        super(-15, "IronMan");
 
         setX(rnd.nextDouble() * Globals.WINDOW_WIDTH);
         setY(rnd.nextDouble() * Globals.WINDOW_HEIGHT);
         setRotate(SPAWNDIRECTION);
-
-        //heading = Utils.createHeadPointer(headPosition);
-
-        //TODO: head x,y coordinate? getposition?
+        speed = 1.5;
     }
 
     @Override
     public void step() {
-        //headPosition = Snake.headPosition; //TODO: vektornak erre kéne mutatnia(végpont)
-
         if (isOutOfBounds()) {
-            heading = Utils.createHeadPointer(headPosition);
+            destroy();
         } else {
-            heading = Utils.createHeadPointer(headPosition);
+            Vec2d headPosition = Globals.getInstance().game.getSnake().getHeadPosition();
+            double direction = Utils.getDirection(headPosition, getPosition());
+            setRotate(direction);
+            Point2D heading = Utils.directionToVector(direction, speed);
+
+            setX(getX() + heading.getX());
+            setY(getY() + heading.getY());
         }
-        setX(getX() + heading.getX());
-        setY(getY() + heading.getY());
     }
 
     @Override
