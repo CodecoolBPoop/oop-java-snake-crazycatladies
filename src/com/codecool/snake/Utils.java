@@ -35,4 +35,25 @@ public class Utils {
 
         return (int) Math.round(Math.random() * (max - min) + min);
     }
+
+    public static Vec2d rotatePoint(Vec2d point, double rotation, Vec2d center) {
+        Vec2d result = new Vec2d();
+        double rotationInRadians = rotation * Math.PI / 180;
+        double radius = getLengthOfVector(subtract(center, point));
+        result.x = point.x * Math.cos(rotationInRadians) * radius;
+        result.y = point.y * Math.sin(rotationInRadians) * radius;
+        return result;
+    }
+
+    public static double getLengthOfVector(Vec2d vector) {
+        double result = Math.sqrt(Math.pow(vector.x, 2) + Math.pow(vector.y, 2));
+        return result;
+    }
+
+    public static Vec2d subtract(Vec2d v1, Vec2d v2) {
+        Vec2d result = new Vec2d();
+        result.x = v1.x - v2.x;
+        result.y = v1.y - v2.y;
+        return result;
+    }
 }
