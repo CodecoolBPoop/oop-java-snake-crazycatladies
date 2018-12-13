@@ -69,8 +69,8 @@ public class Game extends Pane {
     private void spawnEnemiesWhenRun(double probability){
         if (Utils.doesEventHappen(probability)) {
             new SimpleEnemy("DoctorStrange");
-            new SimpleEnemy("AmericanCaptain");
             new SimpleEnemy("StarLord");
+            new IronManEnemy();
         }
     }
 

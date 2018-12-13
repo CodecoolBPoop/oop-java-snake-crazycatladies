@@ -34,6 +34,7 @@ public class Globals {
         resources.addImage("DoctorStrange", new Image("enemies/doctor_strange.png"));
         resources.addImage("StarLord", new Image("enemies/starLord.png"));
         resources.addImage("SpiderMan", new Image("enemies/spider_man.png"));
+        resources.addImage("SpiderWeb", new Image("enemies/spider_web.png"));
         resources.addImage("AmericanCaptain", new Image("enemies/american_captain.png"));
         resources.addImage("TitanBackground", new Image("background_titan.jpg"));
         resources.addImage("SoulStone", new Image("infinity_stones/soul_stone_20x30.png"));

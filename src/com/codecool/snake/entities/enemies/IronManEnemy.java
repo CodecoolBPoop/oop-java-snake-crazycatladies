@@ -15,27 +15,36 @@ public class IronManEnemy extends Enemy implements Interactable, Animatable {
 
     private Point2D heading;
     private static Random rnd = new Random();
+    private Vec2d headPosition = Snake.headPosition;
+
 
     public IronManEnemy() {
         super(-10, "IronMan");
 
         setX(rnd.nextDouble() * Globals.WINDOW_WIDTH);
         setY(rnd.nextDouble() * Globals.WINDOW_HEIGHT);
+        setRotate(SPAWNDIRECTION);
+
+        //heading = Utils.createHeadPointer(headPosition);
 
         //TODO: head x,y coordinate? getposition?
     }
 
     @Override
     public void step() {
-        Vec2d headPosition;
-        headPosition = Snake.headPosition; //TODO: vektornak erre kéne mutatnia(végpont)
+        //headPosition = Snake.headPosition; //TODO: vektornak erre kéne mutatnia(végpont)
 
         if (isOutOfBounds()) {
             heading = Utils.createHeadPointer(headPosition);
         } else {
-
+            heading = Utils.createHeadPointer(headPosition);
         }
         setX(getX() + heading.getX());
         setY(getY() + heading.getY());
+    }
+
+    @Override
+    public String getMessage() {
+        return (getDamage() + " damage from Ironman");
     }
 }
