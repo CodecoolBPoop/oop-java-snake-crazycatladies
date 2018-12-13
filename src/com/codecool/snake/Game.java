@@ -13,6 +13,7 @@ import com.sun.javafx.geom.Vec2d;
 import javafx.scene.Scene;
 import javafx.scene.layout.*;
 import javafx.scene.image.Image;
+
 import javafx.scene.paint.Color;
 import javafx.scene.text.FontWeight;
 import javafx.scene.text.Text;
@@ -29,15 +30,13 @@ public class Game extends Pane {
     private Snake snake = null;
     private GameTimer gameTimer = new GameTimer();
     private GameTimer powerupTimer = new GameTimer(POWERUP_FRAME_TIME);
-<<<<<<< HEAD
+
     private Text healthBoard = new Text();
     private Text healthLabel = new Text();
     private Text scoreBoard = new Text();
     private Text scoreLabel = new Text();
 
-=======
     private GameTimer enemyTimer = new GameTimer(POWERUP_FRAME_TIME);
->>>>>>> develop
 
 
     public Game() {
@@ -118,7 +117,6 @@ public class Game extends Pane {
         }
     }
 
-<<<<<<< HEAD
     private void spawnBoards(Text board, int xCoord, double getterFunction) {
         getChildren().add(board);
 
@@ -150,20 +148,22 @@ public class Game extends Pane {
             scoreBoard.setText(String.valueOf(score));
         }
     }
-
+/*
 
     private void maybeSpawnPowerUp(double probability) {
-    if (Utils.doesEventHappen(probability)) {
-        this.spawnPowerUps(1);
-=======
-    private void maybeSpawnPowerUp(GameLoop gameLoop) {
+        if (Utils.doesEventHappen(probability)) {
+            this.spawnPowerUps(1);
+        }
+    }
+*/
+
+    private void maybeSpawnPowerUp (GameLoop gameLoop){
         if (gameLoop.isRunning() && Utils.doesEventHappen(POWERUP_PROBABILITY)) {
             this.spawnPowerUps(1);
->>>>>>> develop
         }
     }
 
-    public void slowDownEnemies(double speedChange) {
+    public void slowDownEnemies ( double speedChange){
         List<GameEntity> gameObjs = Globals.getInstance().display.getObjectList();
         for (GameEntity gameObject :
                 gameObjs) {
@@ -173,26 +173,26 @@ public class Game extends Pane {
         }
     }
 
-    public void neutralizeEnemies(int howMany) {
-        List<GameEntity> gameObjs = Globals.getInstance().display.getObjectList();
-        int counter = 0;
-        for (int i = 0; i < gameObjs.size(); i++) {
-            if (counter >= howMany) break;
-            GameEntity currentEntity = gameObjs.get(i);
-            if (currentEntity instanceof Enemy && ((Enemy) currentEntity).getDamage() != 0) {
-                ((Enemy) currentEntity).neutralize();
-                counter ++;
+    public void neutralizeEnemies ( int howMany){
+                List<GameEntity> gameObjs = Globals.getInstance().display.getObjectList();
+                int counter = 0;
+                for (int i = 0; i < gameObjs.size(); i++) {
+                    if (counter >= howMany) break;
+                    GameEntity currentEntity = gameObjs.get(i);
+                    if (currentEntity instanceof Enemy && ((Enemy) currentEntity).getDamage() != 0) {
+                        ((Enemy) currentEntity).neutralize();
+                        counter++;
+                    }
+                }
             }
-        }
-    }
 
-    private void setupInputHandling() {
+    private void setupInputHandling () {
         Scene scene = getScene();
         scene.setOnKeyPressed(event -> InputHandler.getInstance().setKeyPressed(event.getCode()));
         scene.setOnKeyReleased(event -> InputHandler.getInstance().setKeyReleased(event.getCode()));
     }
 
-    public void setBackgroundImage(Image backgroundImage) {
+    public void setBackgroundImage (Image backgroundImage){
         setBackground(new Background(new BackgroundImage(backgroundImage, BackgroundRepeat.REPEAT, BackgroundRepeat.REPEAT,
                 BackgroundPosition.CENTER, BackgroundSize.DEFAULT)));
     }
