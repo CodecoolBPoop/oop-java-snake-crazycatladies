@@ -18,7 +18,7 @@ public class Utils {
     public static Point2D createHeadPointer(Vec2d headPosition){
         double headX = headPosition.x;
         double headY = headPosition.y;
-        Point2D headPointer = new Point2D(headX,headY);
+        Point2D headPointer = new Point2D(headX / 10,headY / 10);
         return headPointer;
     }
 
