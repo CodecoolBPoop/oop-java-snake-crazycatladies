@@ -14,11 +14,24 @@ import javafx.geometry.Point2D;
 public class SnakeHead extends GameEntity implements Interactable {
     private static final float turnRate = 3;
     private Snake snake;
+    private Vec2d accessPoint = new Vec2d();
 
     public SnakeHead(Snake snake, Vec2d position) {
         this.snake = snake;
         setImage(Globals.getInstance().getImage("SnakeHead"));
         setPosition(position);
+    }
+
+    public void setAccessPoint() {
+        Vec2d headPosition = getPosition();
+        double headRotation = getRotate();
+        accessPoint.x = headPosition.x;
+        accessPoint.y = headPosition.y;
+        accessPoint = Utils.rotatePoint(accessPoint, headRotation, headPosition);
+    }
+
+    public Vec2d getAccessPoint() {
+        return accessPoint;
     }
 
     public void updateRotation(SnakeControl turnDirection, float speed) {
@@ -36,6 +49,7 @@ public class SnakeHead extends GameEntity implements Interactable {
         Point2D heading = Utils.directionToVector(headRotation, speed);
         setX(getX() + heading.getX());
         setY(getY() + heading.getY());
+        setAccessPoint();
     }
 
     @Override

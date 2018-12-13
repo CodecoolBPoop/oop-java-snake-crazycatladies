@@ -2,7 +2,9 @@ package com.codecool.snake;
 
 import com.codecool.snake.entities.GameEntity;
 import com.codecool.snake.entities.enemies.Enemy;
+import com.codecool.snake.entities.enemies.IronManEnemy;
 import com.codecool.snake.entities.enemies.SimpleEnemy;
+import com.codecool.snake.entities.enemies.SpiderManEnemy;
 import com.codecool.snake.entities.powerups.*;
 import com.codecool.snake.entities.snakes.Snake;
 import com.codecool.snake.eventhandler.InputHandler;
@@ -23,14 +25,19 @@ import java.util.List;
 public class Game extends Pane {
     private static final int POWERUP_FRAME_TIME = 3;
     private static final double POWERUP_PROBABILITY = 0.4;
+    private static final double ENEMY_PROBABILITY = 0.2;
     private Snake snake = null;
     private GameTimer gameTimer = new GameTimer();
     private GameTimer powerupTimer = new GameTimer(POWERUP_FRAME_TIME);
+<<<<<<< HEAD
     private Text healthBoard = new Text();
     private Text healthLabel = new Text();
     private Text scoreBoard = new Text();
     private Text scoreLabel = new Text();
 
+=======
+    private GameTimer enemyTimer = new GameTimer(POWERUP_FRAME_TIME);
+>>>>>>> develop
 
 
     public Game() {
@@ -43,7 +50,7 @@ public class Game extends Pane {
 
     public void init() {
         spawnSnake();
-        spawnEnemies(4);
+        spawnEnemies(2);
         spawnPowerUps(4);
         spawnBoards(scoreBoard, 910, snake.getScore());
         spawnBoards(healthBoard, 160, snake.getHealth());
@@ -53,14 +60,20 @@ public class Game extends Pane {
         GameLoop gameLoop = new GameLoop(snake);
         Globals.getInstance().setGameLoop(gameLoop);
         gameTimer.setup(gameLoop::step);
-        powerupTimer.setup(() -> this.maybeSpawnPowerUp(POWERUP_PROBABILITY));
+        powerupTimer.setup(() -> this.maybeSpawnPowerUp(gameLoop));
+        enemyTimer.setup(() -> this.spawnEnemiesWhenRun(gameLoop));
         gameTimer.play();
         powerupTimer.play();
+        enemyTimer.play();
     }
 
     public void start() {
         setupInputHandling();
         Globals.getInstance().startGame();
+    }
+
+    public Snake getSnake() {
+        return snake;
     }
 
     private void spawnSnake() {
@@ -69,8 +82,16 @@ public class Game extends Pane {
 
     private void spawnEnemies(int numberOfEnemies) {
         for(int i = 0; i < numberOfEnemies; ++i) {
-            new SimpleEnemy("SimpleEnemy");
-            new SimpleEnemy("MyEnemy");
+            new SimpleEnemy("DoctorStrange");
+            new SpiderManEnemy();
+        }
+    }
+
+    private void spawnEnemiesWhenRun(GameLoop gameLoop){
+        if (gameLoop.isRunning() && Utils.doesEventHappen(ENEMY_PROBABILITY)) {
+            new SimpleEnemy("DoctorStrange");
+            new SimpleEnemy("StarLord");
+            new IronManEnemy();
         }
     }
 
@@ -97,6 +118,7 @@ public class Game extends Pane {
         }
     }
 
+<<<<<<< HEAD
     private void spawnBoards(Text board, int xCoord, double getterFunction) {
         getChildren().add(board);
 
@@ -133,6 +155,11 @@ public class Game extends Pane {
     private void maybeSpawnPowerUp(double probability) {
     if (Utils.doesEventHappen(probability)) {
         this.spawnPowerUps(1);
+=======
+    private void maybeSpawnPowerUp(GameLoop gameLoop) {
+        if (gameLoop.isRunning() && Utils.doesEventHappen(POWERUP_PROBABILITY)) {
+            this.spawnPowerUps(1);
+>>>>>>> develop
         }
     }
 
@@ -151,8 +178,9 @@ public class Game extends Pane {
         int counter = 0;
         for (int i = 0; i < gameObjs.size(); i++) {
             if (counter >= howMany) break;
-            if (gameObjs.get(i) instanceof Enemy) {
-                ((Enemy) gameObjs.get(i)).neutralize();
+            GameEntity currentEntity = gameObjs.get(i);
+            if (currentEntity instanceof Enemy && ((Enemy) currentEntity).getDamage() != 0) {
+                ((Enemy) currentEntity).neutralize();
                 counter ++;
             }
         }

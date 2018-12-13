@@ -23,6 +23,10 @@ public class GameLoop {
         running = false;
     }
 
+    public boolean isRunning() {
+        return running;
+    }
+
     public void step() {
         if(running) {
             snake.step();
