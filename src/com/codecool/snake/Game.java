@@ -21,6 +21,7 @@ import java.util.List;
 public class Game extends Pane {
     private static final int POWERUP_FRAME_TIME = 3;
     private static final double POWERUP_PROBABILITY = 0.4;
+    private static final double ENEMY_PROBABILITY = 0.2;
     private Snake snake = null;
     private GameTimer gameTimer = new GameTimer();
     private GameTimer powerupTimer = new GameTimer(POWERUP_FRAME_TIME);
@@ -43,8 +44,8 @@ public class Game extends Pane {
         GameLoop gameLoop = new GameLoop(snake);
         Globals.getInstance().setGameLoop(gameLoop);
         gameTimer.setup(gameLoop::step);
-        powerupTimer.setup(() -> this.maybeSpawnPowerUp(POWERUP_PROBABILITY));
-        enemyTimer.setup(() -> this.spawnEnemiesWhenRun(POWERUP_PROBABILITY));
+        powerupTimer.setup(() -> this.maybeSpawnPowerUp(gameLoop));
+        enemyTimer.setup(() -> this.spawnEnemiesWhenRun(gameLoop));
         gameTimer.play();
         powerupTimer.play();
         enemyTimer.play();
@@ -66,8 +67,8 @@ public class Game extends Pane {
         }
     }
 
-    private void spawnEnemiesWhenRun(double probability){
-        if (Utils.doesEventHappen(probability)) {
+    private void spawnEnemiesWhenRun(GameLoop gameLoop){
+        if (gameLoop.isRunning() && Utils.doesEventHappen(ENEMY_PROBABILITY)) {
             new SimpleEnemy("DoctorStrange");
             new SimpleEnemy("StarLord");
             new IronManEnemy();
@@ -97,8 +98,8 @@ public class Game extends Pane {
         }
     }
 
-    private void maybeSpawnPowerUp(double probability) {
-        if (Utils.doesEventHappen(probability)) {
+    private void maybeSpawnPowerUp(GameLoop gameLoop) {
+        if (gameLoop.isRunning() && Utils.doesEventHappen(POWERUP_PROBABILITY)) {
             this.spawnPowerUps(1);
         }
     }
