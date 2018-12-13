@@ -110,22 +110,18 @@ public class Snake implements Animatable {
     
         Globals.getInstance().display.clear();
 
-        Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+        Alert alert = new Alert(Alert.AlertType.CONFIRMATION, "Your score is: " + round(score),
+                ButtonType.NO, ButtonType.YES);
 
         alert.setTitle("GAME OVER!");
-        alert.setHeaderText("Your score is: " + round(score));
-        alert.setContentText("Start a new game?");
-        ButtonType buttonTypeOne = new ButtonType("Yes");
-        ButtonType buttonTypeTwo = new ButtonType("No");
+        alert.setHeaderText("Start a new game?");
 
         Platform.runLater(() -> {
             System.out.println(score);
             Optional<ButtonType> result = alert.showAndWait();
-            if (result.get() == ButtonType.OK) {
-                System.out.println("testing new game");
+            if (result.get() == ButtonType.YES) {
                 newGame();
-            } else if (result.get() == ButtonType.CANCEL) {
-                System.out.println("testing exit game");
+            } else if (result.get() == ButtonType.NO) {
                 Platform.exit();
             }
         });
