@@ -26,8 +26,7 @@ public class SnakeHead extends GameEntity implements Interactable {
         Vec2d headPosition = getPosition();
         double headRotation = getRotate();
         accessPoint.x = headPosition.x;
-        accessPoint.y = headPosition.y;
-        accessPoint = Utils.rotatePoint(accessPoint, headRotation, headPosition);
+        accessPoint.y = headPosition.y + 20;
     }
 
     public Vec2d getAccessPoint() {
