@@ -123,8 +123,9 @@ public class Game extends Pane {
         int counter = 0;
         for (int i = 0; i < gameObjs.size(); i++) {
             if (counter >= howMany) break;
-            if (gameObjs.get(i) instanceof Enemy) {
-                ((Enemy) gameObjs.get(i)).neutralize();
+            GameEntity currentEntity = gameObjs.get(i);
+            if (currentEntity instanceof Enemy && ((Enemy) currentEntity).getDamage() != 0) {
+                ((Enemy) currentEntity).neutralize();
                 counter ++;
             }
         }

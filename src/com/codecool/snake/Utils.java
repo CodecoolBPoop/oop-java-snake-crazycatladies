@@ -63,9 +63,9 @@ public class Utils {
         double b = to.x - from.x;
         if (b == 0) {
             if (a >= 0) {
-                return 90;
-            } else {
                 return -90;
+            } else {
+                return 90;
             }
         }
         return Math.toDegrees(Math.atan(a / b)) - 90;
