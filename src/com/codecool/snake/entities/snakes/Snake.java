@@ -105,7 +105,7 @@ public class Snake implements Animatable {
     }
 
     public void displayAlert() {
-
+    Globals.getInstance().display.clear();
      Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
         alert.setTitle("GAME OVER!");
         alert.setHeaderText("Your score is: " + round(score));
@@ -127,14 +127,11 @@ public class Snake implements Animatable {
     }
 
     public void newGame() {
-        System.out.println(health);
         Globals.getInstance().display.clear();
         Globals.getInstance().game.init();
         Globals.getInstance().game.start();
         resetHealth();
         resetScore();
-        System.out.println(health);
-        System.out.println(score);
     }
 
 

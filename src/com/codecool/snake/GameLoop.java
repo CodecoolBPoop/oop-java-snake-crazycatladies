@@ -6,7 +6,6 @@ import com.codecool.snake.entities.Interactable;
 import com.codecool.snake.entities.enemies.Enemy;
 import com.codecool.snake.entities.powerups.TimeStonePowerUp;
 import com.codecool.snake.entities.snakes.Snake;
-import com.codecool.snake.Game;
 
 import java.util.List;
 
