@@ -6,7 +6,6 @@ import com.codecool.snake.entities.Animatable;
 import com.codecool.snake.entities.GameEntity;
 import com.codecool.snake.eventhandler.InputHandler;
 
-import com.sun.javafx.geom.Point2D;
 import com.sun.javafx.geom.Vec2d;
 import javafx.scene.control.Alert;
 import javafx.scene.control.ButtonType;
@@ -22,7 +21,7 @@ public class Snake implements Animatable {
     private static float speed = 2;
     private static final int maxHealth = 100;
     private static final double startingScore = 0;
-    private static final double scorePerStep = 0.4;
+    private static final double SCORE_PER_STEP = 0.1;
 
     private int health = 100;
     private double score = 0;
@@ -48,7 +47,7 @@ public class Snake implements Animatable {
     public void step() {
         SnakeControl turnDir = getUserInput();
         head.updateRotation(turnDir, speed);
-        changeScore(scorePerStep);
+        changeScore(SCORE_PER_STEP);
         updateSnakeBodyHistory();
         checkForGameOverConditions();
 
