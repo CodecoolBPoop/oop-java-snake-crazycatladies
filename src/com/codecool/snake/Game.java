@@ -6,9 +6,11 @@ import com.codecool.snake.entities.enemies.SimpleEnemy;
 import com.codecool.snake.entities.powerups.*;
 import com.codecool.snake.entities.snakes.Snake;
 import com.codecool.snake.eventhandler.InputHandler;
+import com.codecool.snake.GameLoop;
 
 import com.sun.javafx.geom.Vec2d;
 import javafx.scene.Scene;
+import javafx.scene.control.Button;
 import javafx.scene.layout.*;
 import javafx.scene.image.Image;
 
@@ -22,6 +24,9 @@ public class Game extends Pane {
     private Snake snake = null;
     private GameTimer gameTimer = new GameTimer();
     private GameTimer powerupTimer = new GameTimer(POWERUP_FRAME_TIME);
+    private int health = 100;
+    private Button healthBoard;
+    private Button scoreBoard;
 
 
     public Game() {
@@ -36,6 +41,8 @@ public class Game extends Pane {
         spawnSnake();
         spawnEnemies(4);
         spawnPowerUps(4);
+        spawnScoreBoard();
+        spawnHealthBoard();
 
         GameLoop gameLoop = new GameLoop(snake);
         Globals.getInstance().setGameLoop(gameLoop);
@@ -84,9 +91,39 @@ public class Game extends Pane {
         }
     }
 
+    private void spawnScoreBoard( ) {
+        scoreBoard = new Button();
+        getChildren().add(scoreBoard);
+
+        scoreBoard.setLayoutX(100);
+        scoreBoard.setLayoutY(100);
+        scoreBoard.setPrefSize(100, 100);
+        scoreBoard.setText(String.valueOf("score" + snake.getScore()));
+    }
+
+    public void updateScoreboard() {
+        double score = snake.getScore();
+        scoreBoard.setText(String.valueOf(score));
+    }
+
+    private void spawnHealthBoard() {
+        healthBoard = new Button();
+        getChildren().add(healthBoard);
+
+        healthBoard.setLayoutX(200);
+        healthBoard.setLayoutY(400);
+        healthBoard.setPrefSize(100,100);
+        healthBoard.setText(String.valueOf(health));
+    }
+
+    public void updateHealthBoard() {
+        int health = snake.getHealth();
+        healthBoard.setText(String.valueOf(health));
+    }
+
     private void maybeSpawnPowerUp(double probability) {
-        if (Utils.doesEventHappen(probability)) {
-            this.spawnPowerUps(1);
+    if (Utils.doesEventHappen(probability)) {
+        this.spawnPowerUps(1);
         }
     }
 

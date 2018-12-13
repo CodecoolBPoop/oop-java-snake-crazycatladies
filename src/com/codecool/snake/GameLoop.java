@@ -6,6 +6,7 @@ import com.codecool.snake.entities.Interactable;
 import com.codecool.snake.entities.enemies.Enemy;
 import com.codecool.snake.entities.powerups.TimeStonePowerUp;
 import com.codecool.snake.entities.snakes.Snake;
+import com.codecool.snake.Game;
 
 import java.util.List;
 
@@ -26,6 +27,8 @@ public class GameLoop {
     public void step() {
         if(running) {
             snake.step();
+            Globals.getInstance().game.updateHealthBoard();
+            Globals.getInstance().game.updateScoreboard();
             for (GameEntity gameObject : Globals.getInstance().display.getObjectList()) {
                 if (gameObject instanceof Animatable) {
                     ((Animatable) gameObject).step();

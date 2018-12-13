@@ -24,12 +24,20 @@ public class Snake implements Animatable {
     private static final int maxHealth = 100;
     private static final double startingScore = 0;
     private static final double scorePerStep = 0.4;
+
     private int health = 100;
     private double score = 0;
 
     private SnakeHead head;
     private DelayedModificationList<GameEntity> body;
 
+    public int getHealth() {
+        return health;
+    }
+
+    public double getScore() {
+        return round(score);
+    }
 
     public Snake(Vec2d position) {
         head = new SnakeHead(this, position);
