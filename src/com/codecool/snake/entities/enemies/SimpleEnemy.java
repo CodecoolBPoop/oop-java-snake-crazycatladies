@@ -10,46 +10,32 @@ import java.util.Random;
 
 import javafx.geometry.Point2D;
 
-
-
 public class SimpleEnemy extends Enemy implements Animatable, Interactable {
 
     private Point2D heading;
     private static Random rnd = new Random();
+    double direction;
 
-    public SimpleEnemy() {
-        super(10);
+    public SimpleEnemy(String imageName) {
+        super(-10, imageName);
 
-        setImage(Globals.getInstance().getImage("SimpleEnemy"));
         setX(rnd.nextDouble() * Globals.WINDOW_WIDTH);
         setY(rnd.nextDouble() * Globals.WINDOW_HEIGHT);
 
-        double direction = rnd.nextDouble() * 360;
-        setRotate(direction);
+        direction = rnd.nextDouble() * 360;
+        setRotate(SPAWNDIRECTION);
 
-        int speed = 1;
         heading = Utils.directionToVector(direction, speed);
     }
 
     @Override
     public void step() {
         if (isOutOfBounds()) {
-            destroy();
+            direction = rnd.nextDouble() * 360;
+            setRotate(SPAWNDIRECTION);
+            heading = Utils.directionToVector(direction, speed);
         }
         setX(getX() + heading.getX());
         setY(getY() + heading.getY());
-    }
-
-    @Override
-    public void apply(GameEntity entity) {
-        if(entity instanceof SnakeHead){
-            System.out.println(getMessage());
-            destroy();
-        }
-    }
-
-    @Override
-    public String getMessage() {
-        return (getDamage() + " damage");
     }
 }

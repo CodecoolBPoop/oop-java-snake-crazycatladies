@@ -14,6 +14,7 @@ public class Main extends Application {
     public void start(Stage primaryStage) {
         Game game = new Game();
         Scene mainScene = new Scene(game, Globals.WINDOW_WIDTH, Globals.WINDOW_HEIGHT);
+        game.setBackgroundImage(Globals.getInstance().getImage("TitanBackground"));
 
         primaryStage.setTitle("Snake Game");
         primaryStage.setScene(mainScene);
@@ -24,6 +25,6 @@ public class Main extends Application {
 
     @Override
     public void stop() throws Exception {
-        System.out.println("Exiting..");
+        System.out.println("Exiting");
     }
 }

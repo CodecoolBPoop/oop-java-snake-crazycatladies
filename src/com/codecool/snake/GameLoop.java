@@ -3,6 +3,8 @@ package com.codecool.snake;
 import com.codecool.snake.entities.GameEntity;
 import com.codecool.snake.entities.Animatable;
 import com.codecool.snake.entities.Interactable;
+import com.codecool.snake.entities.enemies.Enemy;
+import com.codecool.snake.entities.powerups.TimeStonePowerUp;
 import com.codecool.snake.entities.snakes.Snake;
 
 import java.util.List;
@@ -21,9 +23,15 @@ public class GameLoop {
         running = false;
     }
 
+    public boolean isRunning() {
+        return running;
+    }
+
     public void step() {
         if(running) {
             snake.step();
+            Globals.getInstance().game.updateHealthBoard();
+            Globals.getInstance().game.updateScoreboard();
             for (GameEntity gameObject : Globals.getInstance().display.getObjectList()) {
                 if (gameObject instanceof Animatable) {
                     ((Animatable) gameObject).step();
@@ -52,4 +60,5 @@ public class GameLoop {
             }
         }
     }
+
 }
